@@ -19,6 +19,10 @@ p {
 
 .schedule_actions {
     width: 100%;
+    position: sticky;
+    top: 0;
+    background: #2d2d2d;
+    padding-bottom: 10px;
 }
 
 .schedule_header {
@@ -26,7 +30,6 @@ p {
     align-items: center;
     justify-content: space-between;
     padding: 10px;
-    padding-bottom: 0;
     width: 96%;
 }
 
@@ -42,10 +45,25 @@ p {
     color: white;
 }
 
+.schedule_header--title {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    width: 100%;
+}
+
 .schedule_title {
     color: white;
     padding: 0;
     margin: 0;
+}
+
+.schedule_group {
+    color: rgb(179, 179, 179);
+    margin-left: 10px;
+    font-size: 18px;
+    font-style: italic;
 }
 
 .schedule_form {
@@ -96,6 +114,7 @@ p {
     margin: 0;
     width: 100%;
     color: white;
+    background: #252525;
 }
 
 .schedule_dayOfWeek {
@@ -110,7 +129,7 @@ p {
     align-items: flex-start;
     justify-content: flex-start;
     margin: 5px 10px;
-    border: 2px solid #555;
+    border: 2px solid #3d3d3d;
     border-radius: 5px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;

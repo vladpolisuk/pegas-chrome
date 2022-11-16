@@ -121,6 +121,8 @@ const toDate = `${lastDay.toISOString().substring(0, 10)}`;
 
 chrome.storage.local.get("group", ({ group }) => {
     if (group) {
+        const schedule_group = document.querySelector('.schedule_group');
+        schedule_group.textContent = group;
         const schedule_external = document.querySelector('.schedule_external');
         schedule_external.href = `https://bsuedu.ru/bsu/education/schedule/groups/index.php?group=${group}`;
         const xhr = new XMLHttpRequest();
@@ -132,8 +134,10 @@ chrome.storage.local.get("group", ({ group }) => {
 
 input.addEventListener('submit', (event) => {
     event.preventDefault();
+    const schedule_group = document.querySelector('.schedule_group');
     const value = document.querySelector('.schedule_input').value;
     const schedule_external = document.querySelector('.schedule_external');
+    schedule_group.textContent = value;
     schedule_external.href = `https://bsuedu.ru/bsu/education/schedule/groups/index.php?group=${value}`;
 
     chrome.storage.local.set({ group: value })
