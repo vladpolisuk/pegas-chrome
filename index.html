@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Расписание БелГУ</title>
+</head>
+
+<body>
+    <main class="schedule">
+        <div class="schedule_actions">
+            <div class="schedule_header">
+                <h1 class="schedule_title">
+                    Расписание БелГУ
+                </h1>
+
+                <a target="_blank" class="schedule_external" title="Перейти в БелГУ">
+                    <img class="schedule_external--img" alt="Перейти в БелГУ" src="/images/external.svg" />
+                </a>
+            </div>
+
+            <form id="group" class="schedule_form">
+                <input form="group" placeholder="Номер группы" class="schedule_input" type="text" name="group">
+                <button form="group" class="schedule_btn" type="submit">OK</button>
+            </form>
+        </div>
+
+        <ul class="schedule_list">
+
+        </ul>
+    </main>
+
+    <script src="scripts/index.js"></script>
+</body>
+
+</html>

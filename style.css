@@ -1,0 +1,240 @@
+body {
+    padding: 0;
+    margin: 0;
+    width: 500px;
+    background-color: rgb(45, 45, 45);
+}
+
+p {
+    margin: 0;
+}
+
+.schedule {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 100%;
+}
+
+.schedule_actions {
+    width: 100%;
+}
+
+.schedule_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    padding-bottom: 0;
+    width: 96%;
+}
+
+.schedule_external {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.schedule_external--img {
+    width: 24px;
+    height: 24px;
+    color: white;
+}
+
+.schedule_title {
+    color: white;
+    padding: 0;
+    margin: 0;
+}
+
+.schedule_form {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    margin-top: 4px;
+}
+
+.schedule_input {
+    background: transparent;
+    margin-left: 10px;
+    border: 2px solid rgb(101, 101, 101);
+    outline: none;
+    padding: 4px 6px;
+    color: white;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.schedule_btn {
+    cursor: pointer;
+    padding: 0 9px;
+    margin-left: 4px;
+    height: 28px;
+    border: 0;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    background: #228997;
+    font-weight: bold;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    justify-content: center;
+}
+
+.schedule_list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    color: white;
+}
+
+.schedule_dayOfWeek {
+    font-size: 16px;
+    margin-left: 10px;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.schedule_subject {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin: 5px 10px;
+    border: 2px solid #555;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    padding: 8px 8px;
+}
+
+.schedule_subject--current {
+    border-color: #4ca426;
+    background-color: #253826;
+}
+
+.schedule_subject_time {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 7px;
+}
+
+.schedule_subject--time {
+    color: rgb(215, 215, 215);
+    font-size: 13px;
+}
+
+.schedule_subject--number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    width: 17px;
+    height: 16px;
+    line-height: 0;
+    font-size: 14px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.schedule_subject_info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.schedule_subject--badges {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px;
+}
+
+.schedule_subject--edworkkind {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.schedule_subject--edworkkind-green {
+    background-color: rgb(48, 160, 33);
+}
+
+.schedule_subject--edworkkind-blue {
+    background-color: rgb(33, 63, 160);
+}
+
+.schedule_subject--edworkkind-purple {
+    background-color: rgb(111, 33, 160);
+}
+
+.schedule_subject--edworkkind-red {
+    background-color: rgb(160, 33, 33);
+}
+
+.schedule_subject--subgroup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    background-color: rgb(160, 100, 9);
+}
+
+.schedule_subject--online {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    background-color: rgb(33, 63, 160);;
+}
+
+.schedule_subject--name {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.schedule_subject--name a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+.schedule_subject--teacher {
+    font-size: 12px;
+}
+
+.schedule_subject--teacher a {
+    color: rgb(211, 211, 211);
+    text-decoration: none;
+}
