@@ -51,16 +51,20 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
             for (let i = 0; i < result[j].subjects.length; i++) {
                 const element = document.createElement("li");
-                const day = new Date(result[j].subjects[i].timestart * 1000).getDay();
                 const startTime = new Date(result[j].subjects[i].timestart * 1000);
                 const endTime = new Date(result[j].subjects[i].timeend * 1000);
                 const parsedStartTime = `${padTo2Digits(startTime.getHours())}:${padTo2Digits(startTime.getMinutes())}`;
                 const parsedEndTime = `${padTo2Digits(endTime.getHours())}:${padTo2Digits(endTime.getMinutes())}`;
-                const isThisTime = new Date().getHours() >= startTime.getHours()
-                    && new Date().getHours() <= endTime.getHours()
-                    && new Date().getDay() == day;
-                const teacherInfo = result[j].subjects[i].teacher ? `${result[j].subjects[i].teacher.pos} ${result[j].subjects[i].teacher.name}` : "";
-                const subgroup = result[j].subjects[i].subgroup ? result[j].subjects[i].subgroup.slice(0, 1) : "";
+                const isThisTime = (Date.now() >= result[j].subjects[i].timestart * 1000)
+                    && (Date.now() <= result[j].subjects[i].timeend * 1000);
+
+                const teacherInfo = result[j].subjects[i].teacher
+                    ? `${result[j].subjects[i].teacher.pos} ${result[j].subjects[i].teacher.name}`
+                    : "";
+
+                const subgroup = result[j].subjects[i].subgroup
+                    ? result[j].subjects[i].subgroup.slice(0, 1)
+                    : "";
 
                 let edworkkindColor = '';
 
