@@ -1,4 +1,21 @@
-body {
+::-webkit-scrollbar {  
+    width: 8px;
+}
+ 
+::-webkit-scrollbar-track {
+    box-shadow: none;
+}
+ 
+::-webkit-scrollbar-thumb {
+    background-color: rgb(122, 122, 122);
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+}
+
+html,body {
     padding: 0;
     margin: 0;
     width: 500px;
@@ -72,6 +89,7 @@ p {
     justify-content: flex-start;
     flex-direction: row;
     margin-top: 4px;
+    width: 100%;
 }
 
 .schedule_input {
@@ -115,13 +133,24 @@ p {
     width: 100%;
     color: white;
     background: #252525;
+    padding-bottom: 5px;
 }
 
 .schedule_dayOfWeek {
-    font-size: 16px;
+    font-size: 18px;
     margin-left: 10px;
     margin-top: 15px;
     font-weight: bold;
+    color: #fff;
+    background: #282d4d;
+    border-radius: 15px;
+    padding: 0 7px;
+    margin-right: 10px;
+    text-align: center;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
 }
 
 .schedule_subject {
