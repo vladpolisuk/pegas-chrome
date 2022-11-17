@@ -34,6 +34,25 @@ document.addEventListener("DOMContentLoaded", function (event) {
         return newDates;
     }
 
+    const startTimer = (endTime) => {
+        const x = setInterval(() => {
+            const distance = endTime - Date.now();
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.querySelector(".timer--time").innerHTML = `
+                ${padTo2Digits(hours)}:${padTo2Digits(minutes)}:${padTo2Digits(seconds)}
+            `;
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.querySelector(".timer--time").innerHTML = "";
+                document.querySelector(".schedule_subject--current").classList.remove("schedule_subject--current");
+            }
+        }, 1000);
+    }
+
     const setSchedule = ({ target: { response } }) => {
         if (!response) return;
         const result = getParsedJSON(JSON.parse(response));
@@ -57,14 +76,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 const parsedEndTime = `${padTo2Digits(endTime.getHours())}:${padTo2Digits(endTime.getMinutes())}`;
                 const isThisTime = (Date.now() >= result[j].subjects[i].timestart * 1000)
                     && (Date.now() <= result[j].subjects[i].timeend * 1000);
-
-                const teacherInfo = result[j].subjects[i].teacher
-                    ? `${result[j].subjects[i].teacher.pos} ${result[j].subjects[i].teacher.name}`
-                    : "";
-
-                const subgroup = result[j].subjects[i].subgroup
-                    ? result[j].subjects[i].subgroup.slice(0, 1)
-                    : "";
+                if (isThisTime) startTimer(result[j].subjects[i].timeend * 1000);
 
                 let edworkkindColor = '';
 
@@ -75,6 +87,20 @@ document.addEventListener("DOMContentLoaded", function (event) {
                     case "зач.": edworkkindColor = 'red'; break;
                     case "ТЕСТ": edworkkindColor = 'red'; break;
                 }
+
+                const teacherInfo = result[j].subjects[i].teacher
+                    ? `${result[j].subjects[i].teacher.pos} ${result[j].subjects[i].teacher.name}`
+                    : "";
+
+                const subgroup = result[j].subjects[i].subgroup
+                    ? result[j].subjects[i].subgroup.slice(0, 1)
+                    : "";
+
+                const roomInfo = !result[j].subjects[i].online && result[j].subjects[i].room ? `
+                    Каб. ${result[j].subjects[i].room.name}, 
+                    ${result[j].subjects[i].room.area}, 
+                    ${result[j].subjects[i].room.address}
+                ` : "";
 
                 element.innerHTML = `
                     <div class="schedule_subject ${isThisTime ? "schedule_subject--current" : ""}">
@@ -137,10 +163,15 @@ document.addEventListener("DOMContentLoaded", function (event) {
                                 ` : teacherInfo}
                             </p>
 
-                            ${!result[j].subjects[i].online && result[j].subjects[i].room ? `
-                                Каб. ${result[j].subjects[i].room.name}, ${result[j].subjects[i].room.area}, ${result[j].subjects[i].room.address}
-                            ` : ""}
+                            ${roomInfo}
                         </div>
+
+                        ${isThisTime ? `
+                            <div class="timer">
+                                <img class="timer--img" alt="timer" src="/images/timer.svg"/>
+                                <span class="timer--time"></span>
+                            </div>
+                        ` : ''}
                     </div >
                 `;
 
@@ -151,6 +182,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         }
     };
 
+    const scrollToSubjectBtn = document.querySelector('.scroll_to_subject_btn');
     const input = document.querySelector('.schedule_form');
     const current = new Date(new Date().toUTCString())
     const firstDay = new Date(current.setUTCDate(current.getUTCDate() - current.getUTCDay() + 1));
@@ -189,6 +221,25 @@ document.addEventListener("DOMContentLoaded", function (event) {
         xhr.onload = setSchedule;
     });
 
+    scrollToSubjectBtn.addEventListener('click', (event) => {
+        event.preventDefault();
 
+        if (!document.querySelector('.schedule_subject--current')) {
+            const dates = document.querySelectorAll('.schedule_dayOfWeek');
+            const currentDate = new Date().toLocaleDateString("ru", { dateStyle: "medium" });
+            let date = null;
+
+            dates.forEach((node) =>
+                node.textContent.split(', ')[1] === currentDate
+                    ? date = node : null
+            );
+
+            if (date) date.scrollIntoView({ behavior: "smooth", block: "center" });
+            else dates[dates.length - 1].scrollIntoView({ behavior: "smooth", block: "center" });
+            return;
+        }
+
+        document.querySelector('.schedule_subject--current').scrollIntoView({ behavior: "smooth", block: "center" })
+    })
 });
 

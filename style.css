@@ -50,6 +50,30 @@ p {
     width: 96%;
 }
 
+.scroll_to_subject_btn {
+    background: transparent;
+    padding: 0;    
+    border: none;
+    margin-right: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scroll_to_subject_btn--img {
+    width: 28px;
+    height: 28px;
+}
+
+.schedule_header_actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
 .schedule_external {
     display: flex;
     align-items: center;
@@ -108,7 +132,7 @@ p {
 
 .schedule_btn {
     cursor: pointer;
-    padding: 0 9px;
+    padding: 0 5px;
     margin-left: 4px;
     height: 28px;
     border: 0;
@@ -117,13 +141,18 @@ p {
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
-    background: #228997;
+    background: transparent;
     font-weight: bold;
     color: #fff;
     display: flex;
     align-items: center;
     font-size: 13px;
     justify-content: center;
+}
+
+.schedule_btn--img {
+    height: 25px;
+    margin-bottom: 2px;
 }
 
 .schedule_list {
@@ -285,4 +314,22 @@ p {
 .schedule_subject--teacher a {
     color: rgb(211, 211, 211);
     text-decoration: none;
+}
+
+.timer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 20px; 
+}
+
+.timer--time {
+    color: #dedede;
+}
+
+.timer--img {
+    width: 14px;
+    height: 14px;
+    margin-right: 5px;
 }

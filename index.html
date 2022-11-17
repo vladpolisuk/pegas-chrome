@@ -25,10 +25,18 @@
                 </a>
             </div>
 
-            <form id="group" class="schedule_form">
-                <input form="group" placeholder="Номер группы" class="schedule_input" type="text" name="group">
-                <button form="group" class="schedule_btn" type="submit">OK</button>
-            </form>
+            <div class="schedule_header_actions">
+                <form id="group" class="schedule_form">
+                    <input form="group" placeholder="Номер группы" class="schedule_input" type="text" name="group">
+                    <button form="group" class="schedule_btn" type="submit">
+                        <img class="schedule_btn--img" src="/images/find.svg" />
+                    </button>
+                </form>
+
+                <button class="scroll_to_subject_btn">
+                    <img class="scroll_to_subject_btn--img" alt="find" src="/images/current.svg" />
+                </button>
+            </div>
         </div>
 
         <ul class="schedule_list">
@@ -36,6 +44,7 @@
         </ul>
     </main>
 
+    <script src="scripts/clock.js"></script>
     <script src="scripts/index.js"></script>
 </body>
 
