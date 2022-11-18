@@ -102,78 +102,78 @@ document.addEventListener("DOMContentLoaded", function (event) {
                     ${result[j].subjects[i].room.address}
                 ` : "";
 
-                element.innerHTML = `
-                    <div class="schedule_subject ${isThisTime ? "schedule_subject--current" : ""}">
-                        <div class="schedule_subject_time">
-                            <time
-                                datetime="${parsedStartTime}" 
-                                class="schedule_subject--time">
-                                ${parsedStartTime}
-                            </time>
+                element.className = `schedule_subject ${isThisTime ? "schedule_subject--current" : ""}`;
 
-                            <p class="schedule_subject--number">
-                                ${result[j].subjects[i].pairnumber}
-                            </p>
+                element.insertAdjacentHTML('afterbegin', `
+                    <div class="schedule_subject_time">
+                        <time
+                            datetime="${parsedStartTime}" 
+                            class="schedule_subject--time">
+                            ${parsedStartTime}
+                        </time>
 
-                            <time
-                                datetime="${parsedEndTime}" 
-                                class="schedule_subject--time">
-                                ${parsedEndTime}
-                            </time>
-                        </div>
+                        <p class="schedule_subject--number">
+                            ${result[j].subjects[i].pairnumber}
+                        </p>
 
-                        <div class="schedule_subject_info">
-                            <div class="schedule_subject--badges">
-                                <span class="schedule_subject--edworkkind schedule_subject--edworkkind-${edworkkindColor}">
-                                    ${result[j].subjects[i].edworkkind}
+                        <time
+                            datetime="${parsedEndTime}" 
+                            class="schedule_subject--time">
+                            ${parsedEndTime}
+                        </time>
+                    </div>
+
+                    <div class="schedule_subject_info">
+                        <div class="schedule_subject--badges">
+                            <span class="schedule_subject--edworkkind schedule_subject--edworkkind-${edworkkindColor}">
+                                ${result[j].subjects[i].edworkkind}
+                            </span>
+
+                            ${subgroup ? `
+                                <span class="schedule_subject--subgroup">
+                                    ${subgroup} п/г
                                 </span>
+                            ` : ''}
 
-                                ${subgroup ? `
-                                    <span class="schedule_subject--subgroup">
-                                        ${subgroup} п/г
-                                    </span>
-                                ` : ''}
-
-                                ${result[j].subjects[i].online ? `
-                                    <span class="schedule_subject--online">
-                                        онлайн
-                                    </span>
-                                ` : ""}
-                            </div>
-
-                            <div class="schedule_subject--name">
-                                ${result[j].subjects[i].links ? `
-                                    <a
-                                        title="В курс"
-                                        target="_blank"
-                                        href="${result[j].subjects[i].links[0].href}">
-                                        ${result[j].subjects[i].dis}
-                                    </a>
-                                ` : result[j].subjects[i].dis}
-                            </div>
-
-                            <p class="schedule_subject--teacher">
-                                ${result[j].subjects[i].links ? `
-                                    <a
-                                        title="В курс"
-                                        target="_blank"
-                                        href="${result[j].subjects[i].links[0].href}">
-                                        ${teacherInfo}
-                                    </a>
-                                ` : teacherInfo}
-                            </p>
-
-                            ${roomInfo}
+                            ${result[j].subjects[i].online ? `
+                                <span class="schedule_subject--online">
+                                    онлайн
+                                </span>
+                            ` : ""}
                         </div>
 
-                        ${isThisTime ? `
-                            <div class="timer">
-                                <img class="timer--img" alt="timer" src="/images/timer.svg"/>
-                                <span class="timer--time"></span>
-                            </div>
-                        ` : ''}
-                    </div >
-                `;
+                        <div class="schedule_subject--name">
+                            ${result[j].subjects[i].links ? `
+                                <a
+                                    title="В курс"
+                                    target="_blank"
+                                    href="${result[j].subjects[i].links[0].href}">
+                                    ${result[j].subjects[i].dis}
+                                </a>
+                            ` : result[j].subjects[i].dis}
+                        </div>
+
+                        <p class="schedule_subject--teacher">
+                            ${result[j].subjects[i].links ? `
+                                <a
+                                    title="В курс"
+                                    target="_blank"
+                                    href="${result[j].subjects[i].links[0].href}">
+                                    ${teacherInfo}
+                                </a>
+                            ` : teacherInfo}
+                        </p>
+
+                        ${roomInfo}
+                    </div>
+
+                    ${isThisTime ? `
+                        <div class="timer">
+                            <img class="timer--img" alt="timer" src="/images/timer.svg"/>
+                            <span class="timer--time"></span>
+                        </div>
+                    ` : ''}
+                `);
 
                 schedule_block.insertAdjacentElement('beforeend', element);
             };
