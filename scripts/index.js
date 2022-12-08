@@ -41,14 +41,16 @@ document.addEventListener("DOMContentLoaded", function (event) {
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            document.querySelector(".timer--time").innerHTML = `
+            document.querySelectorAll(".timer--time").forEach(element => element.innerHTML = `
                 ${padTo2Digits(hours)}:${padTo2Digits(minutes)}:${padTo2Digits(seconds)}
-            `;
+            `);
 
             if (distance < 0) {
                 clearInterval(x);
-                document.querySelector(".timer--time").innerHTML = "";
-                document.querySelector(".schedule_subject--current").classList.remove("schedule_subject--current");
+                document.querySelectorAll(".timer--time").forEach(element => element.innerHTML = "");
+                document.querySelectorAll(".schedule_subject--current").forEach(element =>
+                    element.classList.remove("schedule_subject--current")
+                );
             }
         }, 1000);
     }
