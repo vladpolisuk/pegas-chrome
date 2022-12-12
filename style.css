@@ -174,7 +174,7 @@ p {
     color: #fff;
     background: #282d4d;
     border-radius: 15px;
-    padding: 0 7px;
+    padding: 2px 7px;
     margin-right: 10px;
     text-align: center;
     -webkit-border-radius: 15px;
@@ -200,6 +200,11 @@ p {
 .schedule_subject--current {
     border-color: #4ca426;
     background-color: #253826;
+}
+
+.schedule_subject--next {
+    border-color: #a45b26;
+    background-color: #383325;
 }
 
 .schedule_subject_time {

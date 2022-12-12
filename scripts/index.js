@@ -48,9 +48,15 @@ document.addEventListener("DOMContentLoaded", function (event) {
             if (distance < 0) {
                 clearInterval(x);
                 document.querySelectorAll(".timer--time").forEach(element => element.innerHTML = "");
-                document.querySelectorAll(".schedule_subject--current").forEach(element =>
-                    element.classList.remove("schedule_subject--current")
-                );
+                if (document.querySelector('.schedule_subject--current')) {
+                    document.querySelectorAll(".schedule_subject--current")
+                        .forEach(element => element.classList.remove("schedule_subject--current"));
+                    document.querySelector('.timer').remove();
+                } else {
+                    document.querySelectorAll(".schedule_subject--next")
+                        .forEach(element => element.classList.remove("schedule_subject--next"));
+                    document.querySelector('.timer').remove();
+                }
             }
         }, 1000);
     }
@@ -76,9 +82,25 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 const endTime = new Date(result[j].subjects[i].timeend * 1000);
                 const parsedStartTime = `${padTo2Digits(startTime.getHours())}:${padTo2Digits(startTime.getMinutes())}`;
                 const parsedEndTime = `${padTo2Digits(endTime.getHours())}:${padTo2Digits(endTime.getMinutes())}`;
+
                 const isThisTime = (Date.now() >= result[j].subjects[i].timestart * 1000)
                     && (Date.now() <= result[j].subjects[i].timeend * 1000);
+
+                const isNext = (Date.now() < result[j].subjects[i].timestart * 1000)
+                    && !schedule_block.querySelector('.schedule_subject--next')
+                    && !document.querySelector('.schedule_subject--next')
+                    && !schedule_block.querySelector('.schedule_subject--current')
+                    && !document.querySelector('.schedule_subject--current');
+
+                const isInOneTime = (result[j].subjects[i + 1]
+                    && result[j].subjects[i].timestart === result[j].subjects[i + 1].timestart
+                    && result[j].subjects[i].pairnumber === result[j].subjects[i + 1].pairnumber)
+                    || (result[j].subjects[i - 1]
+                        && result[j].subjects[i].timestart === result[j].subjects[i - 1].timestart
+                        && result[j].subjects[i].pairnumber === result[j].subjects[i - 1].pairnumber)
+
                 if (isThisTime) startTimer(result[j].subjects[i].timeend * 1000);
+                if (isNext) startTimer(result[j].subjects[i].timestart * 1000);
 
                 let edworkkindColor = '';
 
@@ -104,7 +126,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
                     ${result[j].subjects[i].room.address}
                 ` : "";
 
-                element.className = `schedule_subject ${isThisTime ? "schedule_subject--current" : ""}`;
+                element.classList.add("schedule_subject");
+                if (isInOneTime) element.classList.add("schedule_subject--pair");
+                if (isThisTime) element.classList.add("schedule_subject--current");
+                else if (isNext) element.classList.add("schedule_subject--next");
 
                 element.insertAdjacentHTML('afterbegin', `
                     <div class="schedule_subject_time">
@@ -169,10 +194,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
                         ${roomInfo}
                     </div>
 
-                    ${isThisTime ? `
+                    ${isThisTime || isNext ? `
                         <div class="timer">
                             <img class="timer--img" alt="timer" src="/images/timer.svg"/>
-                            <span class="timer--time"></span>
+                            <span class="timer--time">---</span>
                         </div>
                     ` : ''}
                 `);
