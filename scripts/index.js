@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         return newDates;
     }
 
-    const startTimer = (endTime) => {
+    const startTimer = (endTime, callback) => {
         const x = setInterval(() => {
             const distance = endTime - Date.now();
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -47,15 +47,20 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
             if (distance < 0) {
                 clearInterval(x);
-                document.querySelectorAll(".timer--time").forEach(element => element.innerHTML = "");
+
+                document.querySelectorAll(".timer--time")
+                    .forEach(element => element.innerHTML = "");
+
                 if (document.querySelector('.schedule_subject--current')) {
                     document.querySelectorAll(".schedule_subject--current")
                         .forEach(element => element.classList.remove("schedule_subject--current"));
                     document.querySelector('.timer').remove();
+                    callback();
                 } else {
                     document.querySelectorAll(".schedule_subject--next")
                         .forEach(element => element.classList.remove("schedule_subject--next"));
                     document.querySelector('.timer').remove();
+                    callback();
                 }
             }
         }, 1000);
@@ -93,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                     && !document.querySelector('.schedule_subject--current');
 
                 if (isThisTime) startTimer(result[j].subjects[i].timeend * 1000);
-                if (isNext) startTimer(result[j].subjects[i].timestart * 1000);
+                else if (isNext) startTimer(result[j].subjects[i].timestart * 1000);
 
                 let edworkkindColor = '';
 
@@ -121,7 +126,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
                 element.classList.add("schedule_subject");
                 if (isThisTime) element.classList.add("schedule_subject--current");
-                else if (isNext) element.classList.add("schedule_subject--next");
+                else if (isNext) element.classList.add("schedule_subject--next")
 
                 element.insertAdjacentHTML('afterbegin', `
                     <div class="schedule_subject_time">
