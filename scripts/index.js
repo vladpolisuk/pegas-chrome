@@ -85,13 +85,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
                 const isThisTime = (Date.now() >= result[j].subjects[i].timestart * 1000)
                     && (Date.now() <= result[j].subjects[i].timeend * 1000);
-
-                const isNext = (Date.now() < result[j].subjects[i].timestart * 1000)
-                    && !schedule_block.querySelector('.schedule_subject--next')
-                    && !document.querySelector('.schedule_subject--next')
-                    && !schedule_block.querySelector('.schedule_subject--current')
-                    && !document.querySelector('.schedule_subject--current');
-
                 if (isThisTime) startTimer(result[j].subjects[i].timeend * 1000);
                 if (isNext) startTimer(result[j].subjects[i].timestart * 1000);
 
@@ -119,9 +112,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                     ${result[j].subjects[i].room.address}
                 ` : "";
 
-                element.classList.add("schedule_subject");
-                if (isThisTime) element.classList.add("schedule_subject--current");
-                else if (isNext) element.classList.add("schedule_subject--next");
+                element.className = `schedule_subject ${isThisTime ? "schedule_subject--current" : ""}`;
 
                 element.insertAdjacentHTML('afterbegin', `
                     <div class="schedule_subject_time">
