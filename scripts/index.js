@@ -55,12 +55,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
                     document.querySelectorAll(".schedule_subject--current")
                         .forEach(element => element.classList.remove("schedule_subject--current"));
                     document.querySelector('.timer').remove();
-                    callback();
                 } else {
                     document.querySelectorAll(".schedule_subject--next")
                         .forEach(element => element.classList.remove("schedule_subject--next"));
                     document.querySelector('.timer').remove();
-                    callback();
                 }
             }
         }, 1000);
@@ -126,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
                 element.classList.add("schedule_subject");
                 if (isThisTime) element.classList.add("schedule_subject--current");
-                else if (isNext) element.classList.add("schedule_subject--next")
+                else if (isNext) element.classList.add("schedule_subject--next");
 
                 element.insertAdjacentHTML('afterbegin', `
                     <div class="schedule_subject_time">
