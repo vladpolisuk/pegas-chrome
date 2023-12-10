@@ -39,7 +39,6 @@ p {
     position: sticky;
     top: 0;
     background: #2d2d2d;
-    padding-bottom: 10px;
     z-index: 1;
 }
 
@@ -334,4 +333,40 @@ p {
     width: 14px;
     height: 14px;
     margin-right: 5px;
+}
+
+.controls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 8px;
+}
+
+.prev-btn, .next-btn {
+    cursor: pointer;
+    padding: 0 5px;
+    margin-left: 4px;
+    height: 28px;
+    border: 0;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    background: transparent;
+    font-weight: bold;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    justify-content: center;
+}
+
+.control_btn--img {
+    height: 24px;
+}
+
+.prev-btn:disabled {   
+    cursor: not-allowed;
 }
