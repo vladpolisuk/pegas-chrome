@@ -1,3 +1,4 @@
+import { currentWeek } from "./currentWeek.js";
 import { groupInputListener, groupStorage } from "./groupStorage.js";
 import { setSchedule } from "./setSchedule.js";
 import { getDateInformation } from "./utils/getDateInformation.js";
@@ -16,6 +17,7 @@ export function controlButtons() {
     
         ++count;
         const { fromDate, toDate } = getDateInformation(count);
+        currentWeek({ fromDate, toDate });
         groupStorage(fromDate, toDate, setSchedule);
         groupInputListener(fromDate, toDate, setSchedule);
     })
@@ -23,6 +25,7 @@ export function controlButtons() {
     prevBtnElement.addEventListener('click', () => {
         --count;
         const { fromDate, toDate } = getDateInformation(count);
+        currentWeek({ fromDate, toDate });
         groupStorage(fromDate, toDate, setSchedule);
         groupInputListener(fromDate, toDate, setSchedule);
 

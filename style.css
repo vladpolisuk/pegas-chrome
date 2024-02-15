@@ -339,7 +339,7 @@ p {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     padding: 8px;
 }
 
@@ -361,6 +361,11 @@ p {
     align-items: center;
     font-size: 13px;
     justify-content: center;
+}
+
+.currentWeek {
+    color: #fff;
+    font-size: 14px;
 }
 
 .control_btn--img {
